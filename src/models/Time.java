@@ -28,7 +28,7 @@ public class Time {
         return this.id.equals(timeDesconhecido.getId());
     }
 
-    public int  hashCode() {
-        return Objects.hash(this.id);
-    }
+    public int  hashCode() { return Objects.hash(this.id); }
+
+    public String toString() { return "["+id+"] "+nome+" / "+mascote; }
 }
