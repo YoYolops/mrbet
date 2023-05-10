@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Campeonato {
     private String nome;
     private Time[] timesParticipantes;
+    private int quantParticipantes;
 
     public Campeonato(String nome, int quantParticipantes) {
         this.nome = nome;
@@ -20,12 +21,13 @@ public class Campeonato {
         for(int i = 0; i < timesParticipantes.length; i++) {
             if(timesParticipantes[i] == null) {
                 timesParticipantes[i] = time;
+                quantParticipantes += 1;
                 return;
             }
         }
     }
 
-    private boolean timeJaInscrito(Time time) {
+    public boolean timeJaInscrito(Time time) {
         for(Time timeParticipante : timesParticipantes) {
             if(timeParticipante == null) return false;
             if(timeParticipante.equals(time)) return true;
@@ -42,6 +44,10 @@ public class Campeonato {
 
     public String getNome() { return this.nome; }
 
+    public int getQuantidadeParticipantes() { return this.quantParticipantes; }
+
+    public int getTotalDeVagasNoCampeonato() { return this.timesParticipantes.length; }
+
     public int hashCode() { return Objects.hash(nome); }
     
     public boolean equals(Object o) {
@@ -50,6 +56,10 @@ public class Campeonato {
         if(o.getClass() != this.getClass()) return false;
 
         Campeonato campeonatoDesconhecido = (Campeonato) o;
-        return this.nome.equals(campeonatoDesconhecido.getNome());
+        return this.nome.toLowerCase(null).equals(campeonatoDesconhecido.getNome().toLowerCase());
+    }
+
+    public String toString() {
+        return nome;
     }
 }

@@ -1,15 +1,23 @@
 package models;
 
 public class Aposta {
-    private String idTime;
-    private String nomeCampeonato;
-    private int colocacao;
-    private int valor;
+    private Time time;
+    private Campeonato campeonato;
+    private int palpiteColocacao;
+    private double valor;
 
-    public Aposta(String time, String campeonato, int colocacao, int valor) {
-        this.idTime = time;
-        this.nomeCampeonato = campeonato;
-        this.colocacao = colocacao;
+    public Aposta(Time time, Campeonato campeonato, int colocacao, double valor) {
+        this.time = time;
+        this.campeonato = campeonato;
+        this.palpiteColocacao = colocacao;
         this.valor = valor;
+    }
+
+    public String toString() {
+        return 
+            time.toString()+"\n"+
+            campeonato.toString()+"\n"+
+            this.palpiteColocacao+"/"+campeonato.getTotalDeVagasNoCampeonato()+"\n"+
+            "R$ "+valor+"\n";
     }
 }
