@@ -15,7 +15,7 @@ public class Campeonato {
     public void inscreverTime(Time time) {
         if(timeJaInscrito(time)) throw new IllegalArgumentException("TIME JÁ ESTÁ NO CAMPEONATO");
         if(timesParticipantes[timesParticipantes.length-1] != null) {
-            throw new Error("TODOS OS TIMES DESSE CAMPEONATO JÁ FORAM INCLUÍDOS!");
+            throw new IllegalArgumentException("TODOS OS TIMES DESSE CAMPEONATO JÁ FORAM INCLUÍDOS!");
         }
 
         for(int i = 0; i < timesParticipantes.length; i++) {

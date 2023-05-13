@@ -15,11 +15,18 @@ public class RepositorioCampeonatos {
         campeonatos.add(novoCampeonato);
     }
 
-    private boolean campeonatoJaExiste(String nome) {
+    public boolean campeonatoJaExiste(String nome) {
         for(Campeonato campeonato : campeonatos) {
             if(campeonato.getNome().equals(nome)) return true;
         }
         return false;
+    }
+
+    public Campeonato getCampeonato(String nomeCampeonato) {
+        for(Campeonato campeonato : campeonatos) {
+            if(campeonato.getNome().equals(nomeCampeonato)) return campeonato;
+        }
+        return null;
     }
 
     public Campeonato[] procurarRegistrosDeTimeEmCampeonatos(String idTime) {

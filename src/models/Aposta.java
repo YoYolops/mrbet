@@ -7,6 +7,10 @@ public class Aposta {
     private double valor;
 
     public Aposta(Time time, Campeonato campeonato, int colocacao, double valor) {
+        if(campeonato.getTotalDeVagasNoCampeonato() < colocacao) {
+            throw new IllegalArgumentException("APOSTA NÃO REGISTRADA!");
+        }
+
         this.time = time;
         this.campeonato = campeonato;
         this.palpiteColocacao = colocacao;

@@ -12,5 +12,16 @@ public class RepositorioApostas {
         Aposta novaAposta = new Aposta(time, campeonato, colocacao, valor);
         apostas.add(novaAposta);
     }
+
+    public String toString() {
+        String relatorio = "";
+        int contador = 1;
+
+        for(Aposta aposta : apostas) {
+            relatorio += contador + ". "+aposta+"\n\n";
+        }
+
+        return relatorio;
+    }
     
 }
