@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Main {
-    
     public static void main(String[] args) {
         MrBet mrbet = new MrBet();
         Scanner sc = new Scanner(System.in);
@@ -16,7 +15,6 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         }
-
         System.out.println("Por hoje é só pessoal!");
     }
 

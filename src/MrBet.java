@@ -19,7 +19,6 @@ public class MrBet {
 
         times.cadastrarTime(timeId, nomeTime, mascote);
         System.out.println("INCLUSÃO REALIZADA!");
-
     }
 
     public void getTimeById() {
