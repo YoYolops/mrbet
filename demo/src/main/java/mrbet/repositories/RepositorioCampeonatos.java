@@ -1,9 +1,9 @@
-package repositories;
+package mrbet.repositories;
 
 import java.util.Set;
 import java.util.HashSet;
 
-import models.Campeonato;
+import mrbet.models.Campeonato;
 
 public class RepositorioCampeonatos {
     private Set<Campeonato> campeonatos = new HashSet<Campeonato>();

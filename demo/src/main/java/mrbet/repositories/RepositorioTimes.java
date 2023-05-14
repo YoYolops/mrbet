@@ -1,9 +1,9 @@
-package repositories;
+package mrbet.repositories;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import models.Time;
+import mrbet.models.Time;
 
 public class RepositorioTimes {
     private Set<Time> times = new HashSet<Time>();

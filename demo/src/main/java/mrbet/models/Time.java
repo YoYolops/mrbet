@@ -1,4 +1,4 @@
-package models;
+package mrbet.models;
 
 import java.util.Objects;;
 

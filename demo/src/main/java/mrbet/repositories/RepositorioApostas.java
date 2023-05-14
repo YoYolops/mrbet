@@ -1,8 +1,8 @@
-package repositories;
+package mrbet.repositories;
 
 import java.util.ArrayList;
 
-import models.*;
+import mrbet.models.*;
 
 public class RepositorioApostas {
     private ArrayList<Aposta> apostas = new ArrayList<Aposta>();

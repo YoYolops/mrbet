@@ -1,7 +1,9 @@
+package mrbet;
+
 import java.util.Scanner;
 
-import repositories.*;
-import models.*;
+import mrbet.repositories.*;
+import mrbet.models.*;
 
 public class MrBet {
     Scanner sc = new Scanner(System.in);

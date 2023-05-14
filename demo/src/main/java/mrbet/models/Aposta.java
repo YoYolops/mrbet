@@ -1,4 +1,4 @@
-package models;
+package mrbet.models;
 
 public class Aposta {
     private Time time;
