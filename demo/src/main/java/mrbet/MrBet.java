@@ -11,46 +11,28 @@ public class MrBet {
     private final RepositorioCampeonatos campeonatos = new RepositorioCampeonatos();
     private final RepositorioTimes times = new RepositorioTimes();
 
-    public void cadastrarTime() {
-        System.out.println("Código: ");
-        String timeId = sc.nextLine();
-        System.out.println("Nome: ");
-        String nomeTime  = sc.nextLine();
-        System.out.println("Mascote: ");
-        String mascote  = sc.nextLine();
-
+    public void cadastrarTime(String timeId, String nomeTime, String mascote) {
         times.cadastrarTime(timeId, nomeTime, mascote);
         System.out.println("INCLUSÃO REALIZADA!");
     }
 
-    public void getTimeById() {
-        System.out.println("Código: ");
-        String timeId = sc.nextLine();
+    public void getTimeById(String timeId) {
         Time timeEncontrado = times.getTime(timeId);
 
-        if(timeEncontrado == null) System.out.println("TIME NÃO EXISTE!");
+        if(timeEncontrado == null) throw new IllegalArgumentException("TIME NÃO EXISTE!");
         else System.out.println(timeEncontrado);
     }
 
-    public void criarCampeonato() {
-        System.out.println("Campeonato: ");
-        String nomeCampeonato = sc.nextLine();
-        System.out.println("Participantes: ");
-        int quantParticipantes = Integer.parseInt(sc.nextLine());
-
+    public void criarCampeonato(String nomeCampeonato, int quantParticipantes) {
         campeonatos.adicionarCampeonato(nomeCampeonato, quantParticipantes);
         System.out.println("CAMPEONATO ADICIONADO!");
     }
 
-    public void incluirTimeEmCampeonato() {
-        System.out.println("(I) Incluir time em campeonato ou (V) Verificar se time está em campeonato?");
-        String subOpcao = sc.nextLine().toLowerCase();
+    public Campeonato getCampeonato(String nomeCapeonato) {
+        return campeonatos.getCampeonato(nomeCapeonato);
+    }
 
-        System.out.println("Código: ");
-        String timeId = sc.nextLine();
-        System.out.println("Campeonato: ");
-        String nomeCampeonato = sc.nextLine();
-
+    public void incluirTimeEmCampeonato(String subOpcao, String timeId, String nomeCampeonato) {
         Campeonato campeonatoEncontrado = campeonatos.getCampeonato(nomeCampeonato);
         if(campeonatoEncontrado == null) throw new IllegalArgumentException("CAMPEONATO NÃO EXISTE!");
 
@@ -65,10 +47,7 @@ public class MrBet {
         else throw new IllegalArgumentException("OPÇÃO INVÁLIDA!");
     }
 
-    public void exibirCampeonatosDeUmTime() {
-        System.out.println("Time: ");
-        String timeId = sc.nextLine();
-
+    public void exibirCampeonatosDeUmTime(String timeId) {
         Time timeEcontrado = times.getTime(timeId);
         if(timeEcontrado == null) throw new IllegalArgumentException("TIME NÃO EXISTE!");
 
@@ -80,34 +59,19 @@ public class MrBet {
         }
     }
 
-    public void apostaHandler() {
-        System.out.println("(A)Apostar ou (S)Status das Apostas?");
-        String subOpcao = sc.nextLine().toLowerCase();
+    public void apostar(String timeId, String nomeCampeonato, int palpiteColocacao, double valorAposta) {
+        Time timeEncontrado = times.getTime(timeId);
+        Campeonato campeonatoEncontrado = campeonatos.getCampeonato(nomeCampeonato);
 
-        System.out.println("Código: ");
-        String timeId = sc.nextLine();
-        System.out.println("Campeonato: ");
-        String nomeCampeonato = sc.nextLine();
-        System.out.println("Colocação: ");
-        int palpiteColocacao = Integer.parseInt(sc.nextLine());
-        System.out.println("Valor da Aposta: ");
-        double valorAposta = Double.parseDouble(
-            sc.nextLine()
-            .replace("R$", "")
-            .replace(",", ".")
-        );
+        if(timeEncontrado == null) throw new IllegalArgumentException("TIME NÂO EXISTE!");
+        if(campeonatoEncontrado == null) throw new IllegalArgumentException("CAMPEONATO NÃO EXISTE!");
 
-        if(subOpcao.equals("a")) {
-            Time timeEncontrado = times.getTime(timeId);
-            Campeonato campeonatoEncontrado = campeonatos.getCampeonato(nomeCampeonato);
+        apostas.registrarAposta(timeEncontrado, campeonatoEncontrado, palpiteColocacao, valorAposta);
+        System.out.println("APOSTA REGISTRADA!");
+    }
 
-            if(timeEncontrado == null) throw new IllegalArgumentException("TIME NÂO EXISTE!");
-            if(campeonatoEncontrado == null) throw new IllegalArgumentException("CAMPEONATO NÃO EXISTE!");
-
-            apostas.registrarAposta(timeEncontrado, campeonatoEncontrado, palpiteColocacao, valorAposta);
-            System.out.println("APOSTA REGISTRADA!");
-        }
-        else if(subOpcao.equals("s")) System.out.println(apostas);
+    public void relatorioDeApostas() {
+        System.out.println(apostas);
     }
 
 }
